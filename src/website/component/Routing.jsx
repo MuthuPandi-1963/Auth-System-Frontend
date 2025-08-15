@@ -5,6 +5,7 @@ import SignIn from '../Signup/SignIn'
 import Social from '../Signup/Social'
 import Otpgen from '../Signup/Otpgen'
 import SignUp from '../Signup/SignUp'
+import About from './About'
 export default function Routing(){
     return(
         <Routes>  
@@ -12,7 +13,7 @@ export default function Routing(){
         <Route path="/home" element={<Home/>}/>
         <Route path="/login" element={<SignIn/>}/>
         <Route path="/signup" element={<SignUp/>}/>
-
+        <Route path='/about' element={<About/>}/>
         <Route path="/otpgen" element={<Otpgen/>}/>
         <Route path="/social" element={<Social/>}/>
         <Route path='*' element={<Error/>}/>
