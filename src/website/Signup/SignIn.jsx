@@ -2,14 +2,15 @@ import React from "react";
 import { useState } from "react"
 import { Link } from 'react-router-dom';
 import Otpgen from "./Otpgen";
+import { useNavigate } from "react-router-dom";
 export default function Authform(){
     const [isLogin,setIsLogin] =useState(true)
     const [error,setError] =useState(null)
     const [loading,setLoading]=useState(false)
+    const navigate =useNavigate()
     const [formData,setFormData]=useState(
         {
             name:'',
-            email:'',
             password:'',
         }
     )
@@ -23,6 +24,9 @@ export default function Authform(){
         setError(null)
     
     }
+    const Gotoprofile =()=>{
+      navigate('/login/profile/:id')
+    }
     return(
         <div className=" grid items-center justify-center p-2 m-2 rounded h-96 shadow-2xl" id="auth">
       <form className=" flex flex-col gap-3  w-auto" onSubmit={HandleSub} >
@@ -30,21 +34,13 @@ export default function Authform(){
           <input
             type="text"
             name="name"
-            placeholder="Full Name"
+            placeholder="User Name"
             value={formData.name}
             onChange={HandleChange}
             required
             className="inputs"
           />
-        <input
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  value={formData.email}
-                  onChange={HandleChange}
-                  required
-            className="inputs"
-                />
+
                 <input
                   type="password"
                   name="password"
@@ -55,10 +51,10 @@ export default function Authform(){
             className="inputs"
 
         />
-        {error && <p style={{ color: 'red', fontSize: '0.9rem' }}>{error}</p>}
+        {error && <p className="text-red-800 font-sarif">{error}</p>}
 
         <button type="submit" className="btns" disabled={loading}>
-          {loading ? 'Please wait...' : isLogin ? 'Login' : 'Sign Up'}
+          {loading ? 'Please wait...' : isLogin ? {Gotoprofile} : 'Sign Up'}
         </button>
 
         <p className="toggle"  onClick={() => setIsLogin(!isLogin)}></p>

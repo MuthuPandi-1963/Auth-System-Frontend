@@ -46,16 +46,16 @@ export default function Otpgen(){
     }
     return(
         <div className="otpgent  text-center shadow p-2 justify-center grid w-auto h-max items-center">
-            <h1 className="header">Enter  Otp</h1>
+            <h1 className="header uppercase underline">Enter  Otp</h1>
             <p className="para">Otp sended to the {phone}</p>
-            <form  onSubmit={otpVerify}>
+            <form  onSubmit={otpVerify} className="flex flex-col p-2 justify-center items-center">
                 <label htmlFor="" className="uppercase p-2 flex font-mono">enter otp :</label>
                 <input type="text"
                 onChange={(e)=>setOtp(e.target.value)}
                 value={otp}
                 placeholder="Enter Otp"
                 required
-                 className="inputs border" maxLength={6}/>
+                 className="inputs border w-fit " maxLength={6}/>
                  <Resend onResend={otpVerify} className="text-sm font-serif text-blue-800 underline curser-pointer hover:text-blue-600 ">resend</Resend>
                  <button type="submit" className="btns"disabled={verify}>
                     {verify?'verify....':"verify otp"}

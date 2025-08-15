@@ -6,8 +6,11 @@
     @apply border-1 rounded text-wrap text-gray-500 font-semibold p-1 items-center text-sm lowercase pl-2  ;
 }
 .header{
-    @apply text-2xl capitalize font-semibold p-4  justify-center decoration-1
+    @apply text-xl  font-semibold p-4  justify-center decoration-1
 }
 .para{
-    @apply text-gray-400 p-2 m-2 font-semibold text-lg w-max capitalize
+    @apply text-gray-400 p-2 m-2 font-semibold text-lg  uppercase
+}
+.error{
+    @apply text-red-600 
 }
