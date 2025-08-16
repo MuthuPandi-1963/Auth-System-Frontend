@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react"
 import { Link } from 'react-router-dom';
 import Otpgen from "./Otpgen";
+import Googlelogin from './Googlelogin'
 import { useNavigate } from "react-router-dom";
 export default function Authform(){
     const [isLogin,setIsLogin] =useState(true)
@@ -61,6 +62,7 @@ export default function Authform(){
              {isLogin ? <p> Don't have an account?<Link to="/signup"><button className="btns">Sign Up here</button></Link></p> : 'Already have an account? Log in'}
       
       </form>
+      <Googlelogin/>
     </div>
   )
 }
