@@ -6,7 +6,6 @@ const Home = () => {
     <div>
       <Nav/>
       <h1>Home Content</h1>
-       <Link to="/login/profile/101">Go to User 101 Profile</Link>
     </div>
   )
 }

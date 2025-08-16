@@ -1,11 +1,11 @@
 import React from 'react'
 import {  useNavigate } from 'react-router'
 export default function Nav() {
-  const links = ["Home","Login","About"] 
+  const links = ["Home","Login","About",'Profile'] 
   const navigate =useNavigate() 
   const HandleNavigate=(path)=>{
     {
-      navigate(`/${path.toLowerCase()}`)
+            navigate(`/${path.toLowerCase()}`)
     }
     
   }

@@ -31,7 +31,7 @@ export default function Authform(){
     return(
         <div className=" grid items-center justify-center p-2 m-2 rounded h-96 shadow-2xl" id="auth">
       <form className=" flex flex-col gap-3  w-auto" onSubmit={HandleSub} >
-        <h2 className="headers">Login</h2>
+        <h2 className="headers py-2 font-bold uppercase  text-3xl">Login</h2>
           <input
             type="text"
             name="name"
@@ -59,7 +59,7 @@ export default function Authform(){
         </button>
 
         <p className="toggle"  onClick={() => setIsLogin(!isLogin)}></p>
-             {isLogin ? <p> Don't have an account?<Link to="/signup"><button className="btns">Sign Up here</button></Link></p> : 'Already have an account? Log in'}
+             {isLogin ? <p> Don't have an account?<Link to="/signup"><button className="text-gray-500 font-serif text-sm underline p-2 hover:text-blue-700 cursor-pointer">Sign Up here</button></Link></p> : 'Already have an account? Log in'}
       
       </form>
       <Googlelogin/>

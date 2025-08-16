@@ -30,7 +30,7 @@ export default function Login(){
        catch(err){
         setError(data.message||err)
        }
-      
+     
        
        
       //call api backed
@@ -45,8 +45,19 @@ export default function Login(){
                 name="phone"
                 id="phone"
                 value={phone}
+                required
                 onChange={handlePhonesubmit}
                  placeholder="Enter Phone Number/Email"  className="inputs" />
+                 <input type="password" 
+                 className="inputs"
+                 required
+                 name="password" id="password" 
+                 placeholder="enter password" />
+                  <input type="password" 
+                  className="inputs "
+                  required
+                 name="cpassword" id="cpassword" 
+                 placeholder="confirm password" />
                  <button type="submit" className="btns">submit</button>
             </form>:<div>
             <p>check the phone number {phone}</p>
