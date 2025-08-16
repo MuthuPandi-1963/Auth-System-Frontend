@@ -8,6 +8,7 @@ import SignUp from '../Signup/SignUp'
 import About from './About'
 import Profile from './Profile'
 import Error from './Error'
+import ResetPassword from '../Signup/Resetpassword'
 export default function Routing(){
     return(
         <Routes>  
@@ -18,6 +19,7 @@ export default function Routing(){
         <Route path='/about' element={<About/>}/>
         <Route path="/otpgen" element={<Otpgen/>}/>
         <Route path="/social" element={<Social/>}/>
+        <Route path='/resetpassword' element={<ResetPassword/>}/>
         <Route path='/login/profile/:id' element={<Profile/>}/>
         <Route path='*' element={<Error/>}/>
         </Routes>

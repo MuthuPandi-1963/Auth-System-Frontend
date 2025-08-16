@@ -29,8 +29,8 @@ export default function Authform(){
       navigate('/login/profile/:id')
     }
     return(
-        <div className=" grid items-center justify-center p-2 m-2 rounded h-96 shadow-2xl" id="auth">
-      <form className=" flex flex-col gap-3  w-auto" onSubmit={HandleSub} >
+        <div className="  m-auto p-21 justify-center items-center " id="auth">
+      <form className=" flex flex-col gap-3" onSubmit={HandleSub} >
         <h2 className="headers py-2 font-bold uppercase  text-3xl">Login</h2>
           <input
             type="text"
@@ -39,7 +39,7 @@ export default function Authform(){
             value={formData.name}
             onChange={HandleChange}
             required
-            className="inputs"
+            className="inputs w-fit"
           />
 
                 <input
@@ -49,17 +49,21 @@ export default function Authform(){
                   value={formData.password}
                   onChange={HandleChange}
                     required
-            className="inputs"
+            className="inputs w-fit"
 
         />
         {error && <p className="text-red-800 font-sarif">{error}</p>}
 
-        <button type="submit" className="btns" disabled={loading}>
+        <button type="submit" className="bg-gray-700 p-2 px-4 rounded text-white font-serif hover:bg-gray-500 hover:text-white w-fit " disabled={loading}>
           {loading ? 'Please wait...' : isLogin ? 'login  ' : 'Sign Up'}
         </button>
-
+        <Link to='/resetpassword'> <button className="text-gray-500 font-serif text-sm underline p-2 hover:text-blue-700 cursor-pointer">Reset password</button></Link>
         <p className="toggle"  onClick={() => setIsLogin(!isLogin)}></p>
-             {isLogin ? <p> Don't have an account?<Link to="/signup"><button className="text-gray-500 font-serif text-sm underline p-2 hover:text-blue-700 cursor-pointer">Sign Up here</button></Link></p> : 'Already have an account? Log in'}
+             {isLogin ? <p> Don't have an account?<Link to="/signup">
+             <button className="text-gray-500 font-serif text-sm underline p-2 hover:text-blue-700 cursor-pointer">Sign Up here</button>
+             </Link>
+            </p>:  'Already have an account? Log in'}
+
       
       </form>
       <Googlelogin/>
