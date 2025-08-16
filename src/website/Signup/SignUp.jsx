@@ -2,7 +2,7 @@ import { useState } from "react"
 import { data, Link } from "react-router"
 import { useNavigate } from "react-router"
 export default function Login(){
-    const[phone,setPhone]=useState(null)
+    const[phone,setPhone]=useState()
     const [showotp,setShowotp]=useState(false)
     const [error,setError]=useState()
     const navigate =useNavigate();
@@ -14,11 +14,13 @@ export default function Login(){
         const regex =/[^0-9]/g;
        try{
         
-        if( phone.length==0||phone.length<10||regex.test(phone)||null||undefined||phone==" "){
+        if( phone.length===0||phone.length<10||regex.test(phone)||phone==" "){
             setError("Invalid Entry")
              setShowotp(false)
-
                 return
+        }
+        else if(phone==null||phone==undefined){
+            setError(error)
         }
         else{   
         setError('otp sended')
@@ -40,8 +42,8 @@ export default function Login(){
         <div className="">
            {!showotp? <form className="flex flex-col my-25" onSubmit={handleCsubmit}>
                 <input type='text'
-                name:phone
-                id:phone
+                name="phone"
+                id="phone"
                 value={phone}
                 onChange={handlePhonesubmit}
                  placeholder="Enter Phone Number/Email"  className="inputs" />

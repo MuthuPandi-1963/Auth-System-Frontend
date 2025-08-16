@@ -54,7 +54,7 @@ export default function Authform(){
         {error && <p className="text-red-800 font-sarif">{error}</p>}
 
         <button type="submit" className="btns" disabled={loading}>
-          {loading ? 'Please wait...' : isLogin ? {Gotoprofile} : 'Sign Up'}
+          {loading ? 'Please wait...' : isLogin ? 'login  ' : 'Sign Up'}
         </button>
 
         <p className="toggle"  onClick={() => setIsLogin(!isLogin)}></p>

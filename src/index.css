@@ -14,3 +14,6 @@
 .error{
     @apply text-red-600 
 }
+.links{
+    @apply text-blue-600 underline cursor-pointer self-center
+}

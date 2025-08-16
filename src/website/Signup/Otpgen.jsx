@@ -5,11 +5,13 @@ import Resend from "./Resendotp";
 export default function Otpgen(){
     const [otp,setOtp]=useState('')
     const [verify,setVerifying]=useState(false)
-
+  const [redirect,setRedirect]=useState(false)
     const navigate =useNavigate()
     const location =useLocation();
     const phone =location.state?.phone;
- 
+  const HandleRedirect=()=>{
+    setRedirect(!redirect)
+  }
     const otpVerify=async (e)=>{
         e.preventDefault();
         if(otp.length !==6){
@@ -59,6 +61,9 @@ export default function Otpgen(){
                  <Resend onResend={otpVerify} className="text-sm font-serif text-blue-800 underline curser-pointer hover:text-blue-600 ">resend</Resend>
                  <button type="submit" className="btns"disabled={verify}>
                     {verify?'verify....':"verify otp"}
+                 </button>
+                 <button type="submit" className="links" onClick={HandleRedirect}>
+                    {redirect?navigate('/signup'):"edit"} 
                  </button>
             </form>
          </div>
