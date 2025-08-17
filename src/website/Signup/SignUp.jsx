@@ -6,7 +6,7 @@ export default function SignUp(){
     const[userinfo,setUserinfo]=useState({
         phone:'',
         password:'',
-        confirmpassword:''
+        name:''
     })
     const [showotp,setShowotp]=useState(false)
     const [error,setError]=useState()
@@ -34,16 +34,14 @@ export default function SignUp(){
              setShowotp(false)
                 return
         }
-        else if(userinfo.password!==userinfo.confirmpassword){
-                setError("Enter Same password")
-                  setShowotp(false)
-                return
-            }
         else{   
          setPhone((previnfo)=>[...previnfo,userinfo])
         setShowotp(true)
         setError('otp sended')
-        // navigate('/otpgen',{state:{phone}})
+        if(setShowotp){
+        navigate('/otpgen',{state:{phone}})
+
+        }
         console.log(setPhone);
         e.preventDefault()
            } 
@@ -58,33 +56,35 @@ export default function SignUp(){
       //call api backed
     }
     return(
-        <div className="flex justify-center items-center flex-col">
-        < h1 className="header">SignUp page</h1>
+        <div className="background ">
+            <div className="blurbg">
+        < h1 className="font-semibold text-[20px] my-2 uppercase text-white">SignUp page</h1>
         
-        <div className="">
-           {!showotp? <form className="flex flex-col my-25" onSubmit={handleCsubmit}>
+           {!showotp? <form className="flex flex-col " onSubmit={handleCsubmit}>
+             <input type="password" 
+                  className="inputs "
+                  onChange={handlePhonesubmit}
+                  value={userinfo.name}
+                  required
+                  name="name" id="name" 
+                  placeholder="name" />
                 <input type='text'
                 name="phone"
                 id="phone"
                 value={userinfo.phone}
                 required
                 onChange={handlePhonesubmit}
-                 placeholder="Enter Phone Number/Email"  className="inputs" />
+                placeholder="Enter Phone Number/Email"  className="inputs" />
                  <input type="password" 
-                 className="inputs"
-                onChange={handlePhonesubmit}
+                 className="inputs "
+                 onChange={handlePhonesubmit}
                  value={phone.password}
                  required
                  name="password" id="password" 
                  placeholder="enter password" />
-                  <input type="password" 
-                  className="inputs "
-                onChange={handlePhonesubmit}
-                  value={userinfo.confirmpassword}
-                  required
-                 name="confirmpassword" id="cpassword" 
-                 placeholder="confirm password" />
-                 <button type="submit" className="btns">submit</button>
+                 
+                 <button type="submit" className="bg-gray-200 rounded py-1 my-4  hover:bg-gray-400">submit</button>
+                 <p className="items-center" onClick={()=>{navigate('/login')}}>Already have a account ?<span className="hover:underline pl-2 text-shadow-blue-950">Log In</span></p>
             </form>:<div>
             <p>check the phone number {userinfo.phone}</p>
             
@@ -95,6 +95,6 @@ export default function SignUp(){
         <p className="error">
             {error}
         </p>
-        </div>
+                  </div>
     )
 }

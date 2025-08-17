@@ -47,11 +47,11 @@ export default function Otpgen(){
         return <p>404 error</p>
     }
     return(
-        <div className="otpgent  text-center shadow p-2 justify-center grid w-auto h-max items-center">
-            <h1 className="header uppercase underline">Enter  Otp</h1>
-            <p className="para">Otp sended to the {phone}</p>
-            <form  onSubmit={otpVerify} className="flex flex-col p-2 justify-center items-center">
-                <label htmlFor="" className="uppercase p-2 flex font-mono">enter otp :</label>
+        <div className=" h-screen shadow  justify-center flex flex-col  items-center bg-gradient-to-bl from-gray-400 to-white">
+          <div className=" bg-gray-200 rounded-md w-auto shadow-2xl p-12 items-start ">
+
+            <h1 className="header uppercase text-center">Enter  Otp</h1>
+            <form  onSubmit={otpVerify} className="flex flex-col  justify-center items-center">
                 <input type="text"
                 onChange={(e)=>setOtp(e.target.value)}
                 value={otp}
@@ -66,6 +66,7 @@ export default function Otpgen(){
                     {redirect?navigate('/signup'):"edit"} 
                  </button>
             </form>
+                </div>
          </div>
     )
 }

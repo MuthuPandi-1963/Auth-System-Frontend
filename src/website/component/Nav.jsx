@@ -1,7 +1,7 @@
 import React from 'react'
 import {  useNavigate } from 'react-router'
 export default function Nav() {
-  const links = ["Home","Login","About",'Profile'] 
+  const links = ["Home","About","Product"] 
   const navigate =useNavigate() 
   const HandleNavigate=(path)=>{
     {
@@ -10,15 +10,18 @@ export default function Nav() {
     
   }
   return (
-    <div className='flex items-center justify-end pr-12 p-4  bg-blue-800'>
+   
+      <div className="flex justify-around bg-cyan-950 py-4 text-white">
+        <h2 className='mask-t-from-neutral-600 text-lg'>auth control project</h2>
         <ol className='items-center flex gap-2 font-semibold'>
             {
-              links.map((items,id)=>( <li key={id} onClick={()=>HandleNavigate(items)}>
-                {items}
+              links.map((items,id)=>( <li key={id} className='mask-t-from-10% hover:text-white hover:border-b-2 ' onClick={()=>HandleNavigate(items)}>
+                {items.toLowerCase()}
                 </li>
               ))
-              }
+            }
         </ol>
-    </div>
+            </div>
+    
   )
 }

@@ -6,12 +6,18 @@
     @apply bg-red-500 rounded font-serif p-2 m-2 text-white hover:bg-red-800 cursor-pointer
     
 }
-.graybtn{@apply  bg-gray-500  font-sans rounded p-2 m-2 text-white hover:bg-gray-800 cursor-pointer}
+.graybtn{@apply  bg-gray-500  font-sans rounded  text-white hover:bg-gray-800 cursor-pointer}
 .inputs{
-    @apply border-1 rounded text-wrap text-gray-500 font-semibold p-1 items-center outline-0 text-sm my-2 lowercase pl-2  ;
+    @apply border-1 rounded-xl text-wrap  font-semibold p-2 items-center outline-0 text-sm my-2 lowercase   ;
 }
 .header{
-    @apply text-xl  font-semibold p-4  justify-center decoration-1
+    @apply text-[24px]  font-semibold p-4  justify-center decoration-1
+}
+.subheader{
+    @apply text-xl
+}
+.background{
+    @apply flex h-screen justify-center items-center bg-gradient-to-bl from-blue-600 to-gray-600
 }
 .para{
     @apply text-gray-400 p-2 m-2 font-semibold text-lg  uppercase
@@ -20,5 +26,5 @@
     @apply text-red-600 
 }
 .links{
-    @apply text-blue-600 underline cursor-pointer self-center
+    @apply bg-auto hover:text-blue-800 underline cursor-pointer self-center
 }
