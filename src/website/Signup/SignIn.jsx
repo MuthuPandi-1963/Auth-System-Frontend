@@ -23,6 +23,7 @@ export default function Authform(){
         e.preventDefault()
         setLoading(true)
         setError(null)
+        Gotoprofile()
     
     }
     const Gotoprofile =()=>{
@@ -55,14 +56,13 @@ export default function Authform(){
         {error && <p className="text-red-800 font-sarif">{error}</p>}
 
         <button type="submit" className="bg-gray-700 p-2 px-4 rounded text-white font-serif hover:bg-gray-500 hover:text-white w-fit " disabled={loading}>
-          {loading ? 'Please wait...' : isLogin ? 'login  ' : 'Sign Up'}
+          {loading ? 'Please wait...' : 'login  '}
         </button>
-        <Link to='/resetpassword'> <button className="text-gray-500 font-serif text-sm underline p-2 hover:text-blue-700 cursor-pointer">Reset password</button></Link>
-        <p className="toggle"  onClick={() => setIsLogin(!isLogin)}></p>
-             {isLogin ? <p> Don't have an account?<Link to="/signup">
+        <Link to='/resetpassword'> <button className="text-gray-500 font-serif text-sm underline p-2 hover:text-blue-700 cursor-pointer">forget password</button></Link>
+             {setIsLogin ? <p> Don't have an account?<Link to="/signup" >
              <button className="text-gray-500 font-serif text-sm underline p-2 hover:text-blue-700 cursor-pointer">Sign Up here</button>
              </Link>
-            </p>:  'Already have an account? Log in'}
+            </p>:'Already have an account? Log in'}
 
       
       </form>

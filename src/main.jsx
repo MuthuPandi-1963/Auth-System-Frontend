@@ -6,8 +6,11 @@ import App from './App.jsx'
 import Routing from './website/component/Routing.jsx'
 
 createRoot(document.getElementById('root')).render(
+   <>
+   
   <Router>
-    <Routing/>
-
+    <Routing />
   </Router>
+   </>
+  
 )
