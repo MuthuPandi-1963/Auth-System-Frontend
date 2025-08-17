@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react"
 import { Link } from 'react-router-dom';
-import Otpgen from "./Otpgen";
 import Googlelogin from './Googlelogin'
 import { useNavigate } from "react-router-dom";
 export default function Authform(){
@@ -20,14 +19,25 @@ export default function Authform(){
     setFormData({...formData,[e.target.name]:e.target.value})
     }
     const HandleSub =async (e)=>{
+      setIsLogin(formData)
         e.preventDefault()
         setLoading(true)
         setError(null)
         Gotoprofile()
     
     }
+    // try{
+    //   if(HandleSub){
+    //   }
+    // }
+    // catch(err){
+    //   alert(err)
+    // }
     const Gotoprofile =()=>{
-      navigate('/login/profile/:id')
+      if(formData.name.trim()){
+      navigate(`/login/profile/${encodeURIComponent(formData.name)}`)
+
+      }
     }
     return(
         <div className="  m-auto p-21 justify-center items-center " id="auth">
@@ -55,7 +65,7 @@ export default function Authform(){
         />
         {error && <p className="text-red-800 font-sarif">{error}</p>}
 
-        <button type="submit" className="bg-gray-700 p-2 px-4 rounded text-white font-serif hover:bg-gray-500 hover:text-white w-fit " disabled={loading}>
+        <button type="submit" onClick={HandleSub} className="bg-gray-700 p-2 px-4 rounded text-white font-serif hover:bg-gray-500 hover:text-white w-fit " disabled={loading}>
           {loading ? 'Please wait...' : 'login  '}
         </button>
         <Link to='/resetpassword'> <button className="text-gray-500 font-serif text-sm underline p-2 hover:text-blue-700 cursor-pointer">forget password</button></Link>

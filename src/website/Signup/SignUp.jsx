@@ -24,12 +24,11 @@ export default function SignUp(){
     } 
     
     const handleCsubmit=async (e)=>{
-         setPhone(userinfo)
-        e.preventDefault();
+        
         const regex =/[^0-9]/g;
        try{
         
-        if(userinfo.phone.length===0||userinfo.phone.length<10||regex.test(userinfo.phone)&&userinfo.phone==" "){
+        if(userinfo.phone.length===0||userinfo.phone.length<10||regex.test(userinfo.phone)||userinfo.phone==" "){
             setError("Invalid Entry")
            
              setShowotp(false)
@@ -37,19 +36,21 @@ export default function SignUp(){
         }
         else if(userinfo.password!==userinfo.confirmpassword){
                 setError("Enter Same password")
-                
+                  setShowotp(false)
+                return
             }
-        else if(userinfo.phone==null||userinfo.phone==undefined){
-            setError(error)
-        }
         else{   
+         setPhone((previnfo)=>[...previnfo,userinfo])
+        setShowotp(true)
         setError('otp sended')
-        navigate('/otpgen',{state:{phone}})
-
+        // navigate('/otpgen',{state:{phone}})
+        console.log(setPhone);
+        e.preventDefault()
            } 
        }
        catch(err){
         setError(data.message||err)
+
        }
      
        
@@ -79,7 +80,6 @@ export default function SignUp(){
                   <input type="password" 
                   className="inputs "
                 onChange={handlePhonesubmit}
-
                   value={userinfo.confirmpassword}
                   required
                  name="confirmpassword" id="cpassword" 
