@@ -43,9 +43,9 @@ export default function Otpgen(){
     }
 
     }
-    if(!phone){
-        return <p>404 error</p>
-    }
+    // if(!phone){
+    //     return <p>404 error</p>
+    // }
     return(
         <div className=" h-screen shadow  justify-center flex flex-col  items-center bg-gradient-to-bl from-gray-400 to-white">
           <div className=" bg-gray-200 rounded-md w-auto shadow-2xl p-12 items-start ">

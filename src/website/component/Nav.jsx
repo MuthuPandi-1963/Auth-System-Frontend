@@ -1,11 +1,14 @@
-import React from 'react'
 import {  useNavigate } from 'react-router'
 export default function Nav() {
   const links = ["Home","About","Product"] 
   const navigate =useNavigate() 
   const HandleNavigate=(path)=>{
     {
-            navigate(`/${path.toLowerCase()}`)
+      if(path == "Home") {
+        navigate("/");
+        return 
+      }
+      navigate(`/${path.toLowerCase()}`)
     }
     
   }

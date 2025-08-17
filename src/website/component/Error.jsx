@@ -1,9 +1,8 @@
-import React from 'react'
 import { useNavigate } from 'react-router'
 const Error = () => {
     const navigate=useNavigate();
     const HandleReload=()=>{
-        navigate('/home')
+        navigate('/')
     }
   return (
     <div className=' p-12 grid  content-center justify-center font-bold '>
