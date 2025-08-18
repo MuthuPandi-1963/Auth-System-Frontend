@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import Nav from './Nav'
-import { Link, useNavigate } from 'react-router'
+import { Outlet,useNavigate } from 'react-router'
 import { AppContext } from '../context/AppContext'
 const Home = () => {
   const navigate = useNavigate()

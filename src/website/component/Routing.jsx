@@ -13,7 +13,6 @@ export default function Routing(){
     return(
         <Routes>  
             <Route path='/' element={<Home/>}/>
-        <Route path="/home" element={<Home/>}/>
         <Route path="/login" element={<SignIn/>}/>
         <Route path="/signup" element={<SignUp/>}/>
         <Route path='/about' element={<About/>}/>
@@ -21,6 +20,7 @@ export default function Routing(){
         <Route path="/social" element={<Social/>}/>
         <Route path='/resetpassword' element={<ResetPassword/>}/>
         <Route path='/login/profile/:id' element={<Profile/>}/>
+        
         <Route path='*' element={<Error/>}/>
         </Routes>
     )

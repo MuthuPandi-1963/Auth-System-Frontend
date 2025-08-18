@@ -2,7 +2,7 @@ import axios from "axios";
 import { createContext, useState } from "react";
 
 // Create the context
- const AppContext = createContext();
+export const AppContext = createContext();
 
 // Context Provider component
 export const AppContextProvider = ({ children }) => {
