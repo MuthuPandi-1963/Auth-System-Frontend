@@ -3,7 +3,7 @@ import { createContext, useState } from "react";
 
 // Create the context
  const AppContext = createContext();
-
+export  default AppContext;
 // Context Provider component
 export const AppContextProvider = ({ children }) => {
   const backendUrl = import.meta.env.VITE_BACKEND_URL;

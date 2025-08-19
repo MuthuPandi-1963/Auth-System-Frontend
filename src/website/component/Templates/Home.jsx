@@ -1,6 +1,6 @@
 import Nav from './Nav'
-import { Link, useNavigate } from 'react-router'
-import { AppContext } from '../context/AppContext'
+import { Link } from 'react-router'
+import { Outlet } from 'react-router'
 const Home = () => {
   return (
     <>

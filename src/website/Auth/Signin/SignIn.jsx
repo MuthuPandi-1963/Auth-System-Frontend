@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { useState } from "react"
 import { Link } from 'react-router-dom';
-import Googlelogin from './Googlelogin'
+import Googlelogin from '../Sociallog/Googlelogin'
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
-import {AppContext} from "../context/AppContext";
+import {AppContext} from "../../context/AppContext";
 
 export default function Authform(){
     const [isLogin,setIsLogin] =useState(false)
