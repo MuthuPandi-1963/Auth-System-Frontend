@@ -6,7 +6,9 @@ import Social from './website/Signup/Social'
 export default function App()
 {
   return(  
-  <>  <main>
+  <>
+  <Home />
+  <main>
     <Routing />
   </main>
  

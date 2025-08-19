@@ -1,15 +1,9 @@
-import React from 'react'
 import {  useNavigate } from 'react-router'
 export default function Nav() {
   const links = ["Home","About",'Profile',"Product"] 
   const navigate =useNavigate() 
   const HandleNavigate=(path)=>{
-    { if(path== 'home'){
-      navigate('/')
-    }
-    else if (path =='profile'){
-      navigate('/login/profile')
-    }
+    {
             navigate(`/${path.toLowerCase()}`)
     }
     
