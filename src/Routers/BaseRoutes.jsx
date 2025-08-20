@@ -8,6 +8,8 @@ export default function baseRoutes() {
       <Route path="/" element={<Home />}>
         <Route index element={<Hero />} />
         <Route path="about" element={<About />} />
+        <Route path="hero" element={<Hero />} />
+
         
       </Route>
     </Routes>

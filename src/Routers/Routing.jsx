@@ -1,8 +1,7 @@
 import React, { Children, useState } from 'react'
 import {Routes,Route,Link, Outlet} from 'react-router-dom'
-import Social from '../website/Auth/Sociallog/Social'
+import Social from '../Auth/Sociallog/Social'
 import Profile from '../website/component/usertemp/Profile'
-import Error from './Error'
  function   RequireAuth({Children}){
         const isAuthenticated=false
         return isAuthenticated?Children:<Link to='/login'></Link>
