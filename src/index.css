@@ -1,4 +1,8 @@
 @import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .btns{
     @apply bg-green-400 rounded p-2 m-2 text-white hover:bg-green-700 cursor-pointer ;
 }
@@ -8,7 +12,7 @@
 }
 .graybtn{@apply  bg-gray-500  font-sans rounded  text-white hover:bg-gray-800 cursor-pointer}
 .inputs{
-    @apply border-1 rounded-xl text-wrap  font-semibold p-2 items-center outline-0 text-sm my-2 lowercase   ;
+    @apply border rounded-xl break-words  font-semibold p-2 items-center outline-0 text-sm my-2 lowercase   ;
 }
 .header{
     @apply text-[24px]  font-semibold p-4  justify-center decoration-1

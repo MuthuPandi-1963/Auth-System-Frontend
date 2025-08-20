@@ -9,10 +9,10 @@ export default function Nav() {
       navigate(`/${pathdb}`)
     }
     else if(pathdb=='login') {
-      navigate('auth/login/')
+      navigate('/auth/login/')
     }
     else if(pathdb=='profile'){
-      navigate(`app/profile:{id}/`)
+      navigate(`/app/profile:{id}/`)
     }
     
   }

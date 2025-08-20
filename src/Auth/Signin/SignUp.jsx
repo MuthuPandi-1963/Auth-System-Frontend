@@ -1,6 +1,9 @@
 import { useState } from "react"
-import { data, Link } from "react-router"
+import {  Link } from "react-router"
+import { setUsers } from "../../website/slice/userSlice"
 import { useNavigate } from "react-router"
+import Inputs from "../Inputs/Inputs"
+import { useDispatch } from "react-redux"
 export default function SignUp(){
     const[phone,setPhone]=useState([])
     const[userinfo,setUserinfo]=useState({
@@ -11,80 +14,76 @@ export default function SignUp(){
     const [showotp,setShowotp]=useState(false)
     const [error,setError]=useState()
     const navigate =useNavigate();
-
-    const handlePhonesubmit=(e)=>{
-        const {name,value}= e.target;
-        setUserinfo((info)=>{
-            return {
-                ...info,
-                [name]:value
-            }
-        })
-       
-    } 
+    console.log(phone);
     
-    const handleCsubmit=async (e)=>{
-        
-        const regex =/[^0-9]/g;
-       try{
-        
-        if(userinfo.phone.length===0||userinfo.phone.length<10||regex.test(userinfo.phone)||userinfo.phone==" "){
-            setError("Invalid Entry")
-           
-             setShowotp(false)
-                return
-        }
-        else{   
-         setPhone((previnfo)=>[...previnfo,userinfo])
-        setShowotp(true)
-        setError('otp sended')
-        if(setShowotp){
-        navigate('/otpgen',{state:{phone}})
-
-        }
-        console.log(setPhone);
-        e.preventDefault()
-           } 
+    const dispatch =useDispatch()
+      const HandleChange=async (e)=>{
+       setUserinfo((prev)=>({...prev,[e.target.name]:e.target.value}))
+       setError((prev)=>({...prev,[e.target.name]:''}))
        }
-       catch(err){
-        setError(data.message||err)
-
+         const validate = () => {
+           const newErrors = {};
+           if (!userinfo.username) newErrors.username = 'Username is required';
+           if (!userinfo.password) newErrors.password = 'Password is required';
+           else if (userinfo.password.length < 6) newErrors.password = 'Password too short';
+           return newErrors;
+         };
+       
+   
+       const OnsubmitHandle =async (e)=>{
+         e.preventDefault()
+         const validationerr =validate()
+         
+         if(Object.keys(validationerr).length>0)
+           {
+             setError(validationerr)
+           }
+           dispatch(setUsers(userinfo))
+           setShowotp(true)
+           if(showotp){
+           navigate('/auth/otpgen')     
+           setPhone(((prev)=>[...prev,userinfo.phone])) 
+           }
        }
-     
-       
-       
-      //call api backed
-    }
     return(
         <div className="background ">
             <div className="blurbg">
         < h1 className="font-semibold text-[20px] my-2 uppercase text-white">SignUp page</h1>
         
-           {!showotp? <form className="flex flex-col " onSubmit={handleCsubmit}>
-             <input type="password" 
-                  className="inputs "
-                  onChange={handlePhonesubmit}
-                  value={userinfo.name}
+           {!showotp? <form className="flex flex-col gap-3 " onSubmit={HandleChange}>
+               <Inputs
+            type="text"
+            name="name"
+            placeholder="User Name"
+            value={userinfo.name}
+            onChange={OnsubmitHandle}
+            required     
+            error={error?.name}    
+            />
+             <Inputs
+                  type="phone"
+                  name="phone"
+                  placeholder="phone"
+                  value={userinfo.phone}
+                  onChange={OnsubmitHandle}
                   required
-                  name="name" id="name" 
-                  placeholder="name" />
-                <input type='text'
-                name="phone"
-                id="phone"
-                value={userinfo.phone}
-                required
-                onChange={handlePhonesubmit}
-                placeholder="Enter Phone Number/Email"  className="inputs" />
-                 <input type="password" 
-                 className="inputs "
-                 onChange={handlePhonesubmit}
-                 value={phone.password}
-                 required
-                 name="password" id="password" 
-                 placeholder="enter password" />
+                  error={error?.phone}
+                  className="inputs  border-black w-fit"      
+                  />
+                 
+            <Inputs
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  value={userinfo.password}
+                  onChange={OnsubmitHandle}
+                  required
+                  error={error?.password}
+                  className="inputs  border-black w-fit"      
+                  />
                  
                  <button type="submit" className="bg-gray-200 rounded py-1 my-4  hover:bg-gray-400">submit</button>
-                 <p className="items-center" onClick={()=>{navigate('/login')}}>Already have a account ?<span className="hover:underline pl-2 text-shadow-blue-950">Log In</span></p>
+                 <p className="items-center" onClick={()=>{navigate('/auth/login')}}>Already have a account ?<span className="hover:underline pl-2 text-shadow-blue-950">Log In</span></p>
             </form>:<div>
             <p>check the phone number {userinfo.phone}</p>
             

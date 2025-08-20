@@ -6,7 +6,6 @@ const Home = () => {
     <>
       <Nav/>
     <div className='grid '>
-      
     <Outlet/>
     </div>
     </>
