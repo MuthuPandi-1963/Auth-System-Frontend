@@ -1,15 +1,24 @@
 import React from 'react'
-import { useParams } from 'react-router'
+import { Outlet,useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom'
 import { useState } from 'react';
+import { Tuple } from '@reduxjs/toolkit';
 const Profile = () => {
   const [isLogout,setIsLogOut]=useState(false)
   const {id}=useParams();
+  const navigate =useNavigate()
   const HandleLogout=()=>{
       setIsLogOut(!isLogout)
   }
+  const isAuthenticated = () => {
+    // ✅ Replace with real auth logic
+    return localStorage.getItem("token");
+  };
+
   try{
-    if(isLogout){
-      alert('logout')
+    if(!isAuthenticated){
+      
+      navigate('/login',{replace:true})
       
     }
   }

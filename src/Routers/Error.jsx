@@ -1,8 +1,8 @@
-import { useNavigate } from 'react-router'
+import { useNavigate } from 'react-router-dom'
 const Error = () => {
     const navigate=useNavigate();
     const HandleReload=()=>{
-        navigate('/')
+        navigate('/',{replace:true})
     }
   return (
     <div className=' p-12 grid  content-center justify-center font-bold '>

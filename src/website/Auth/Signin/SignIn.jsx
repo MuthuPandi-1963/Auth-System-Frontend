@@ -1,95 +1,90 @@
-import React, { useContext } from "react";
-import { useState } from "react"
+import { useState } from "react";
 import { Link } from 'react-router-dom';
 import Googlelogin from '../Sociallog/Googlelogin'
 import { useNavigate } from "react-router-dom";
-import axios from 'axios'
-import {AppContext} from "../../context/AppContext";
-
+import {setUsers} from '../../slice/userSlice'
+import Inputs from "../Inputs/Inputs";
+import {useDispatch} from 'react-redux'
 export default function Authform(){
     const [isLogin,setIsLogin] =useState(false)
-    const [error,setError] =useState(null)
-    const [loading,setLoading]=useState(false)
+    const [error,setError]=useState({})
     const navigate =useNavigate()
-    const {backendurl,setLoggedIn,getUserData}=useContext(AppContext)
+    const dispatch =useDispatch()
     const [formData,setFormData]=useState(
         {
             name:'',
             password:'',
         }
     )
-    
-    
    const HandleChange=async (e)=>{
-    setFormData({...formData,[e.target.name]:e.target.value})
+    setFormData((prev)=>({...prev,[e.target.name]:e.target.value}))
+    setError((prev)=>({...prev,[e.target.name]:''}))
     }
+      const validate = () => {
+        const newErrors = {};
+        if (!formData.username) newErrors.username = 'Username is required';
+        if (!formData.password) newErrors.password = 'Password is required';
+        else if (formData.password.length < 6) newErrors.password = 'Password too short';
+        return newErrors;
+      };
+    
+
     const OnsubmitHandle =async (e)=>{
-      isLogin(true)
-      axios.defaults.withCredentials=true
-      try{
-        e.preventDefault()
-       const {data}= await axios.post(backendurl+'/auth/profile',formData.name,formData.password)
-       if(data.success){
-        setLoggedIn(true)
-        getUserData()
-        navigate('/')
-        setLoading(false)
-       }
-       else{
-        setError(true)
-        setLoading(true)
-        alert(data.message)
-       }
-      }
-      catch(err){
-        alert(err)
-      }
+      e.preventDefault()
+      const validationerr =validate()
+      
+      if(Object.keys(validationerr).length>0)
+        {
+          setError(validationerr)
+        }
+        dispatch(setUsers(formData))
+        setIsLogin(true)
+        if(isLogin){
+        navigate('/')      
 
-    }
-  
-      const Gotoprofile =()=>{
-      if(formData.name.trim()){
-      navigate(`/login/profile/${encodeURIComponent(formData.name)}`)
 
-      }
-  
+        }
     }
+      // const Gotoprofile =()=>{
+      // if(formData.name.trim()){
+      // navigate(`/login/profile/${encodeURIComponent(formData.name)}`)
+
+      
     return(
           <div className="background">
         <div className="relative z-10 max-w-md mx-auto  p-8  bg-gray-300  rounded-2xl shadow-lg" id="auth">
 
       <form className=" flex flex-col gap-3 " onSubmit={OnsubmitHandle} >
         <h2 className="headers py-2 font-bold uppercase  text-3xl">Login</h2>
-          <input
+          <Inputs
             type="text"
             name="name"
             placeholder="User Name"
             value={formData.name}
             onChange={HandleChange}
-            required
-            className="inputs  border-black w-fit"
+            required     
+            error={error?.name}    
             />
-
-                <input
+            <Inputs
                   type="password"
                   name="password"
                   placeholder="Password"
                   value={formData.password}
                   onChange={HandleChange}
                   required
-                  className="inputs  border-black w-fit"
-                  
+                  error={error?.password}
+                  className="inputs  border-black w-fit"      
                   />
-        {error && <p className="text-red-800 font-sarif">{error}</p>}
-
-        <button type="submit" onClick={OnsubmitHandle} className="graybtn w-1/2  p-1 px-4 text-md " disabled={loading}>
-          {loading ? 'Please wait...' : 'login  '}
+   
+        <button type="submit" onClick={OnsubmitHandle} className="graybtn w-1/2  p-1 px-4 text-md " >submit
         </button>
-        <Link to='/resetpassword'> <button className="text-gray-900 font-serif text-sm underline p-2 hover:text-blue-700 cursor-pointer">forget password</button></Link>
-             {setIsLogin ? <p> Don't have an account?<Link to="/signup" >
-             <button className="text-gray-900 font-serif text-sm underline p-2 hover:text-indigo-900 cursor-pointer">Sign Up here</button>
-             </Link>
-            </p>:'Already have an account? Log in'}
+      <button className="text-gray-900 font-serif text-sm underline py-2 hover:text-blue-700 text-start cursor-pointer">   <Link to='/resetpassword'>forget password</Link></button>
+             {isLogin ? <p> Don't have an account?
+             <button className="text-gray-900 font-serif text-sm underline p-2 hover:text-indigo-900 cursor-pointer"><Link to="/signup" > Sign Up here    </Link></button>
+         
+            </p>:<p>
+               
+            </p>}
 
       
       </form>

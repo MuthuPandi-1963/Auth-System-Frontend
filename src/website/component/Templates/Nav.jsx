@@ -3,8 +3,16 @@ export default function Nav() {
   const links = ["Home","About",'Profile',"Product"] 
   const navigate =useNavigate() 
   const HandleNavigate=(path)=>{
-    {
-            navigate(`/${path.toLowerCase()}`)
+           
+    const pathdb=path.toLowerCase()
+    if(pathdb=='home'){
+      navigate('/hero')
+    }
+    else if(pathdb=='login') {
+      navigate('auth/login/')
+    }
+    else if(pathdb=='Profile'){
+      navigate('app/profile:id')
     }
     
   }

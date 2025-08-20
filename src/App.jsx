@@ -1,18 +1,14 @@
-import Home from './website/component/Home'
-import Nav from './website/component/Nav'
-import Routing from './website/component/Routing'
-import Login from './website/Signup/SignUp'
-import Social from './website/Signup/Social'
+import Home from './website/component/Templates/Home'
+import Hero from './website/component/Templates/Hero'
+import MainRoutes from './Routers/MainRoutes'
 export default function App()
 {
   return(  
-  <>
-  <Home />
-  <main>
-    <Routing />
-  </main>
- 
-  </>
     
+      
+    <>
+        <MainRoutes />
+        </>
+      
     )
 }
