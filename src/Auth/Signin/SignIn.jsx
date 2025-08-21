@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { Link } from 'react-router-dom';
+import { useEffect } from "react";
 import Googlelogin from '../Sociallog/Googlelogin'
 import { useNavigate } from "react-router-dom";
-import {setUsers} from '../../website/slice/userSlice'
 import Inputs from "../Inputs/Inputs";
-import {useDispatch} from 'react-redux'
+import { loginUser } from "../../website/slice/userSlice";
+import {useDispatch,useSelector} from 'react-redux'
 export default function Authform(){
     const [isLogin,setIsLogin] =useState(false)
-    const [error,setError]=useState({})
+    const [errors,setErrors]=useState({})
     const navigate =useNavigate()
     const dispatch =useDispatch()
     const [formData,setFormData]=useState(
@@ -16,9 +17,17 @@ export default function Authform(){
             password:'',
         }
     )
-   const HandleChange=async (e)=>{
+      const {  isAuthenticated } = useSelector((state) => state.user);
+     useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/');
+    }
+  }, [isAuthenticated, navigate]);
+
+   
+      const HandleChange=(e)=>{
     setFormData((prev)=>({...prev,[e.target.name]:e.target.value}))
-    setError((prev)=>({...prev,[e.target.name]:''}))
+    setErrors((prev)=>({...prev,[e.target.name]:''}))
     }
       const validate = () => {
         const newErrors = {};
@@ -35,15 +44,10 @@ export default function Authform(){
       
       if(Object.keys(validationerr).length>0)
         {
-          setError(validationerr)
+          setErrors(validationerr)
         }
-        dispatch(setUsers(formData))
-        setIsLogin(true)
-        if(isLogin){
-        navigate('/')      
-
-
-        }
+        dispatch(loginUser(formData))
+        setIsLogin(!isLogin)
     }
       // const Gotoprofile =()=>{
       // if(formData.name.trim()){
@@ -63,7 +67,7 @@ export default function Authform(){
             value={formData.name}
             onChange={HandleChange}
             required     
-            error={error?.name}    
+            error={errors?.name}    
             />
             <Inputs
                   type="password"
@@ -72,7 +76,7 @@ export default function Authform(){
                   value={formData.password}
                   onChange={HandleChange}
                   required
-                  error={error?.password}
+                  error={errors?.password}
                   className="inputs  border-black w-fit"      
                   />
    

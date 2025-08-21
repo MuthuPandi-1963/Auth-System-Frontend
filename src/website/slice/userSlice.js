@@ -1,6 +1,6 @@
 import {createSlice,createAsyncThunk} from '@reduxjs/toolkit';
 export const loginUser = createAsyncThunk(
-  'auth/loginUser',
+  'auth/login',
   async ({ email, password }, thunkAPI) => {
     try {
       // Replace with real API call
@@ -16,7 +16,7 @@ export const loginUser = createAsyncThunk(
         return thunkAPI.rejectWithValue('Invalid email or password');
       }
     } catch (e) {
-      return thunkAPI.rejectWithValue('Something went wrong');
+      return thunkAPI.rejectWithValue('Something went wrong',e);
     }
   }
 );
@@ -42,7 +42,7 @@ export const userSlice =createSlice({
          state.isauthenticated=true  
         },
         deleteUser:(state,action)=>{
-            state.user=state.user.filter(
+            state.user=state.username.filter(
             (user,index)=>index !== action.payload);
             },
         },
