@@ -8,7 +8,7 @@ const api =axios.create({
     headers:{"Content-Type":'application/json'}
     
 })
-api.interceptors.requesst.use((config)=>{
+api.interceptors.request.use((config)=>{
     const token = getToken();
     if(token) config.headers.Authorization=`bearer ${token}`
     return config
@@ -25,6 +25,7 @@ api.interceptors.response.use((res)=>res,
 
 )
 // ---- Auth endpoints wrappers ----
+
 export const authAPI = {
 register: (data) => api.post("/auth/signup", data),
 login: (data) => api.post("/auth/login", data),
@@ -36,6 +37,5 @@ verifyPassword: (data) => api.post("/auth/verify-password", data),
 requestReset: (data) => api.post("/auth/request-password-reset", data),
 resetPassword: (data) => api.post("/auth/reset-password", data),
 };
-
 
 export default api;

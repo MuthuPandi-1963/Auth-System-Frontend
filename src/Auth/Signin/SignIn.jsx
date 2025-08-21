@@ -17,7 +17,7 @@ export default function Authform(){
             password:'',
         }
     )
-      const {  isAuthenticated } = useSelector((state) => state.user);
+      const {  isAuthenticated } = useSelector((state) => state.userInfo||{});
      useEffect(() => {
     if (isAuthenticated) {
       navigate('/');
