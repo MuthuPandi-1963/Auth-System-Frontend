@@ -1,28 +1,34 @@
 import React from "react"
 import { useState } from "react"
-import { FiMail, FiArrowRight, FiCheck } from "react-icons/fi"
-
+import Inputs from "../Inputs/Inputs"
 // interface ResetPasswordProps {
 //   onSubmit: (email: string) => void
 //   isLoading?: boolean
 //   isSuccess?: boolean
 // }
 // { onSubmit, isLoading = false, isSuccess = false }: ResetPasswordProps
-export default function ResetPassword() {
+export default function Resetpassword() {
   const [email, setEmail] = useState("")
-  const [errors, setErrors] = useState()
+  const [errors, setErrors] = useState({})
   const [isLoading, setIsLoading] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
-  const onSubmit = (email)=>{console.log(email);setIsLoading(prev=>!prev);setIsSuccess(prev=>prev)
-  }
+  const onSubmit = (email)=>{console.log(email);setIsLoading(prev=>!prev);setTimeout(()=>{
+    console.log(email);
+    setIsSuccess(true)
+    setIsLoading(true)
+    
+  },1000)
+}
   const validateForm = () => {
-
+    const newerr={}
     if (!email.trim()) {
-  setErrors.email = "Email is required"
+  newerr.email = "Email is required"
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setErrors.email = "Please enter a valid email address"
+      newerr.email = "Please enter a valid email address"
     }
-  }
+  
+  setErrors(newerr)
+  return Object.keys(newerr).length===0;};
 
   const handleSubmit = (e) => {
     e.target.value
@@ -35,9 +41,6 @@ export default function ResetPassword() {
   if (isSuccess) {
     return (
       <div className="text-center space-y-6">
-        <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
-          <FiCheck className="w-8 h-8 text-green-600" />
-        </div>
         <div>
           <h3 className="text-xl font-semibold text-gray-900 mb-2">Check Your Email</h3>
           <p className="text-gray-600">
@@ -57,33 +60,31 @@ export default function ResetPassword() {
     <form onSubmit={handleSubmit} className="space-y-6">
       {/* Info Section */}
       <div className="text-center mb-6">
-        <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-          <FiMail className="w-8 h-8 text-blue-600" />
-        </div>
-        <p className="text-gray-600">
+       
+        <p className="text-gray-600 para">
           Enter your email address and we'll send you instructions to reset your password.
         </p>
       </div>
 
       {/* Email Input */}
       <div className="space-y-2">
-        <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="email" className="block header text-sm font-medium text-gray-700">
           Email Address
         </label>
-        <div className="relative">
-          <input
+        <div className="relative justify-center ">
+          <Inputs
             id="email"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-200 focus:border-emerald-500 focus:outline-none transition-all duration-200 ${
+            className={`w-full px-4 py-3 border rounded-lg focus:ring-2  focus:ring-emerald-200 focus:border-emerald-500 focus:outline-none transition-all duration-200 ${
               errors.email ? "border-red-300" : "border-gray-300"
             }`}
             placeholder="Enter your email address"
             disabled={isLoading}
+            error={errors.email}
           />
-          <FiMail className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-        </div>
+        
         {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
       </div>
 
@@ -91,7 +92,7 @@ export default function ResetPassword() {
       <button
         type="submit"
         disabled={isLoading}
-        className="w-full bg-emerald-600 hover:bg-emerald-700 disabled:bg-gray-400 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200 flex items-center justify-center"
+        className="w-fit bg-emerald-600 hover:bg-emerald-700 disabled:bg-gray-400 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200 flex items-center justify-center"
       >
         {isLoading ? (
           <>
@@ -99,10 +100,9 @@ export default function ResetPassword() {
             Sending Instructions...
           </>
         ) : (
-          <>
+          <p>
             Send Reset Instructions
-            <FiArrowRight className="ml-2 w-5 h-5" />
-          </>
+          </p>
         )}
       </button>
 
@@ -117,7 +117,8 @@ export default function ResetPassword() {
           >
             Back to Login
           </button>
-        </p>
+        </p></div>
+        
       </div>
     </form>
   )

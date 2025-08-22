@@ -1,25 +1,33 @@
 import React from 'react'
-import { Outlet,useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom'
 import { useState } from 'react';
-import { Tuple } from '@reduxjs/toolkit';
+import { authAPI } from '../../../Service/api';
+import { logout } from '../../slice/userSlice';
+import { useDispatch } from 'react-redux';
 const Profile = () => {
+  
   const [isLogout,setIsLogOut]=useState(false)
   const {id}=useParams();
+  const dispatch =useDispatch()
   const navigate =useNavigate()
   const HandleLogout=()=>{
       setIsLogOut(!isLogout)
+      dispatch(logout())
+      
   }
-  const isAuthenticated = () => {
+  const isAuthenticated =async () => {
     // ✅ Replace with real auth logic
-    return localStorage.getItem("token");
+    const response = await authAPI.user({id})
+     if(response?.data){
+              console.log(response.data);
+           }
+    
   };
 
   try{
-    if(!isAuthenticated){
-      
-      navigate('/login',{replace:true})
-      
+    if(!isAuthenticated || !authAPI.user ){   
+      navigate('/login',{replace:true}) 
     }
   }
   catch(err){

@@ -1,8 +1,8 @@
 import { getToken,clearToken } from '../utilities/token';
 import store from '../website/app/store'
-import { logout } from '../website/slice/userSlice';
+import  logout  from '../website/slice/userSlice';
 import api from './axios';
-api.interceptors.requesst.use((config)=>{
+api.interceptors.request.use((config)=>{
     const token = getToken();
     if(token) config.headers.Authorization=`bearer ${token}`
     return config

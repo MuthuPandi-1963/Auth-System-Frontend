@@ -2,10 +2,10 @@ import {createSlice,createAsyncThunk} from '@reduxjs/toolkit';
 import axios from 'axios'
 export const loginUser = createAsyncThunk(
   'auth/login',
-  async ({ name, password }, thunkAPI) => {
+  async ({ name, password ,email}, thunkAPI) => {
     try {
       // Replace with real API call
-      const response =await  axios.post('/auth/login',{name,password})
+      const response =await  axios.post('/auth/login',{name,password,email})
       await new Promise((res) => setTimeout(res, 1000)); // simulate delay
        return response.data
     } catch (e) {
@@ -36,16 +36,16 @@ export const userSlice =createSlice({
         },
         deleteUser:(state,action)=>{
             state.user=state.username.filter(
-            (user,index)=>index !== action.payload);
+            (email,index)=>index !== action.payload);
             },
-        },
-        logout:(state)=>{
-            state.username="";
-            state.password='';
-            state.email='';
-            state.isauthenticated=false,
-            state.loading=false,
-            state.error=null
+            logout:(state)=>{
+              state.username="";
+              state.password=" ";
+              state.email=" ";
+              state.isauthenticated=false,
+              state.loading=false,
+              state.error=null
+            },
         }
     })
 export const {setUsers,deleteUser,logout}=userSlice.actions

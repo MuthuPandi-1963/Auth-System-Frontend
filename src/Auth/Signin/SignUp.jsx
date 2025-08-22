@@ -1,17 +1,16 @@
 import  {useState } from "react"
 import { setUsers } from "../../website/slice/userSlice"
-import { useNavigate } from "react-router"
+import { useNavigate } from "react-router-dom"
 import Inputs from "../Inputs/Inputs"
-import authAPI from '../../Service/api'
+import {authAPI} from '../../Service/api'
 import { useDispatch } from "react-redux"
 export default function SignUp(){
     const[formData,setFormData]=useState({
-        phone:'',
-        password:'',
-        name:''
+        email:"",
+        password:"",
+        username:""
     })
-    const [showotp,setShowotp]=useState(false)
-    const [error,setError]=useState()
+        const [error,setError]=useState()
     const navigate =useNavigate();    
     const dispatch =useDispatch()
       const HandleChange=async (e)=>{
@@ -37,15 +36,14 @@ export default function SignUp(){
              setError(validationerr)
              return
            }
-           
+
            dispatch(setUsers(formData))
-           setShowotp(true)
-          
+           
            try{
-               const response =await authAPI.register(formData)
-           console.log(response.data);
-            if(showotp){
-           navigate('/auth/otpgen') 
+             const response =await authAPI.register(formData)
+             if(response?.data){
+              console.log(response.data);
+           navigate('/auth/otpgen',{state:response.data}) 
            alert('go to otp page')
            }
            
@@ -63,21 +61,21 @@ export default function SignUp(){
             <form className="flex flex-col gap-3 " onSubmit={OnsubmitHandle}>
                <Inputs
             type="text"
-            name="name"
+            name="username"
             placeholder="User Name"
-            value={formData.name}
+            value={formData.username}
             onChange={HandleChange}
             required     
-            error={error?.name}    
+            error={error?.username}    
             />
              <Inputs
-                  type="tel"
-                  name="phone"
-                  placeholder="phone"
-                  value={formData.phone}
+                  type="email"
+                  name="email"
+                  placeholder="email"
+                  value={formData.email}
                   onChange={HandleChange}
                   required
-                  error={error?.phone}
+                  error={error?.email}
                   className="inputs  border-black w-fit"      
                   />
                  

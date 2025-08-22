@@ -1,8 +1,7 @@
-import axios from 'axios';
 import { getToken,clearToken } from '../utilities/token';
 import store from '../website/app/store'
 import { logout } from '../website/slice/userSlice';
-
+import axios from './axios';
 const api =axios.create({
     baseurl:import.meta.env.VITE_BACKEND_URL,
     headers:{"Content-Type":'application/json'}
