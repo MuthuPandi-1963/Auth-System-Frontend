@@ -46,7 +46,10 @@ export const userSlice =createSlice({
               state.loading=false,
               state.error=null
             },
+            fetchUser:(state,action)=>{
+              state.data=action.payload
+            }
         }
     })
-export const {setUsers,deleteUser,logout}=userSlice.actions
+export const {setUsers,deleteUser,fetchUser,logout}=userSlice.actions
 export default userSlice.reducer;

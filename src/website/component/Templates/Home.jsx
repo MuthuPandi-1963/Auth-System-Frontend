@@ -6,13 +6,7 @@ import uesState from 'react'
 import useEffect from 'react'
 
 const Home = () => {
-  const navigate =useNavigate()
-      useEffect(()=>{
-        if(!ishome){
-          navigate('/',{replace:true})
-        }
-      },[home,navigate])
-  return (
+    return (
     <>
       <Nav/>
     <div className='grid '>

@@ -14,7 +14,7 @@ export default function Authform(){
     const dispatch =useDispatch()
     const [formData,setFormData]=useState(
         {
-            name:'',
+            username:'',
             password:'',
         }
     )
@@ -53,7 +53,16 @@ export default function Authform(){
         dispatch(loginUser(formData))
         setIsLogin(!isLogin)
       
-      }
+      
+       try {
+           await dispatch(loginUser(formData)).unwrap(); 
+            setIsLogin(true);
+          } catch (err) {
+            console.error("Login failed:", err);
+          } finally {
+            setLoading(false);
+          }
+    }
       // const Gotoprofile =()=>{
       // if(formData.name.trim()){
       // navigate(`/login/profile/${encodeURIComponent(formData.name)}`)
@@ -67,12 +76,12 @@ export default function Authform(){
         <h2 className="headers py-2 font-bold uppercase  text-3xl">Login</h2>
           <Inputs
             type="text"
-            name="name"
+            name="username"
             placeholder="User Name"
-            value={formData.name}
+            value={formData.username}
             onChange={HandleChange}
             required     
-            error={errors?.name}    
+            error={errors?.username}    
             />
             <Inputs
                   type="password"
@@ -87,10 +96,10 @@ export default function Authform(){
    
      {
         loading  ?<h2 className="text-sm font-light text-gray-700 ">loading ....</h2>:
-    <button type="submit" onClick={OnsubmitHandle} className="graybtn w-1/2  p-1 px-4 text-md " >submit
+    <button type="submit" className="graybtn w-1/2  p-1 px-4 text-md " >submit
         </button>  }  
       <button className="text-gray-900 font-serif text-sm underline py-2 hover:text-blue-700 text-start cursor-pointer">   <Link to='/auth/resetpassword'>forget password</Link></button>
-             {setIsLogin ? <p> Don't have an account?
+             {isLogin ? <p> Don't have an account?
              <button className="text-gray-900 font-serif text-sm underline p-2 hover:text-indigo-900 cursor-pointer"><Link to="/auth/signup" > Sign Up here    </Link></button>
          
             </p>:<p>
