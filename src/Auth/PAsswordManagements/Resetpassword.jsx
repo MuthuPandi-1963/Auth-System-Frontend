@@ -59,7 +59,7 @@ export default function Resetpassword() {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       {/* Info Section */}
-      <div className="text-center mb-6">
+      <div className="text-center  mb-6">
        
         <p className="text-gray-600 para">
           Enter your email address and we'll send you instructions to reset your password.
@@ -67,8 +67,8 @@ export default function Resetpassword() {
       </div>
 
       {/* Email Input */}
-      <div className="space-y-2">
-        <label htmlFor="email" className="block header text-sm font-medium text-gray-700">
+      <div className="space-y-2 flex flex-col items-center w-full justify-center">
+        <label htmlFor="email" className="block  header text-sm font-medium text-gray-700">
           Email Address
         </label>
         <div className="relative justify-center ">

@@ -9,6 +9,7 @@ import {useDispatch,useSelector} from 'react-redux'
 export default function Authform(){
     const [isLogin,setIsLogin] =useState(false)
     const [errors,setErrors]=useState({})
+    const [loading,setLoading]=useState(false)
     const navigate =useNavigate()
     const dispatch =useDispatch()
     const [formData,setFormData]=useState(
@@ -20,6 +21,7 @@ export default function Authform(){
       const {  isAuthenticated } = useSelector((state) => state.userInfo||{});
      useEffect(() => {
     if (isAuthenticated) {
+      alert('welcome user')
       navigate('/');
     }
   }, [isAuthenticated, navigate]);
@@ -28,6 +30,7 @@ export default function Authform(){
       const HandleChange=(e)=>{
     setFormData((prev)=>({...prev,[e.target.name]:e.target.value}))
     setErrors((prev)=>({...prev,[e.target.name]:''}))
+ 
     }
       const validate = () => {
         const newErrors = {};
@@ -40,6 +43,7 @@ export default function Authform(){
 
     const OnsubmitHandle =async (e)=>{
       e.preventDefault()
+         setLoading(true)
       const validationerr =validate()
       
       if(Object.keys(validationerr).length>0)
@@ -48,7 +52,8 @@ export default function Authform(){
         }
         dispatch(loginUser(formData))
         setIsLogin(!isLogin)
-    }
+      
+      }
       // const Gotoprofile =()=>{
       // if(formData.name.trim()){
       // navigate(`/login/profile/${encodeURIComponent(formData.name)}`)
@@ -80,8 +85,10 @@ export default function Authform(){
                   className="inputs  border-black w-fit"      
                   />
    
-        <button type="submit" onClick={OnsubmitHandle} className="graybtn w-1/2  p-1 px-4 text-md " >submit
-        </button>
+     {
+        loading  ?<h2 className="text-sm font-light text-gray-700 ">loading ....</h2>:
+    <button type="submit" onClick={OnsubmitHandle} className="graybtn w-1/2  p-1 px-4 text-md " >submit
+        </button>  }  
       <button className="text-gray-900 font-serif text-sm underline py-2 hover:text-blue-700 text-start cursor-pointer">   <Link to='/auth/resetpassword'>forget password</Link></button>
              {setIsLogin ? <p> Don't have an account?
              <button className="text-gray-900 font-serif text-sm underline p-2 hover:text-indigo-900 cursor-pointer"><Link to="/auth/signup" > Sign Up here    </Link></button>
