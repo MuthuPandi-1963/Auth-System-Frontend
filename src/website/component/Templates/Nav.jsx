@@ -12,7 +12,7 @@ export default function Nav() {
       navigate('/auth/login/')
     }
     else if(pathdb=='profile'){
-      navigate(`/app/profile:{id}/`)
+      navigate(`/app/profile/${id}`)
     }
     
   }
