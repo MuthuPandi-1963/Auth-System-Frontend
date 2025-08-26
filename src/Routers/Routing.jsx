@@ -9,13 +9,9 @@ import Profile from '../website/component/usertemp/Profile'
 export default function Routing(){
     return(
         <Routes>  
-            <Route element={<RequireAuth><Outlet/></RequireAuth>}>
-      
-       <Route path='/login/profile/:id' element={<Profile/>}/>
-       <Route path='/social' element={<Social/>}/>
-        
-            </Route>
-       
+       <Route path='/profile/:id' element={<Profile/>}/>
+       <Route path='social' element={<Social/>}/>
+    
         </Routes>
     )
   

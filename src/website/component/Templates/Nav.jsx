@@ -1,6 +1,6 @@
 import {  useNavigate } from 'react-router'
 export default function Nav() {
-  const links = ["Home","About","Profile","Login"] 
+  const links = ["Home","About","Profile","Social","Login"] 
   const navigate =useNavigate() 
   const HandleNavigate=(path)=>{
        const base=['home','about']
@@ -11,8 +11,11 @@ export default function Nav() {
     else if(pathdb=='login') {
       navigate('/auth/login/')
     }
-    else if(pathdb=='profile'){
-      navigate(`/app/profile/${id}`)
+    else if(pathdb==='profile'){
+      navigate('/app/profile/')
+    }
+    else if(pathdb==='social'){
+      navigate('/app/social')
     }
     
   }

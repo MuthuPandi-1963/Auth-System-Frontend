@@ -8,10 +8,10 @@ export default function App() {
   return (
     <Routes>
       {/* Public routes */}
-      <Route path="/*" element={<BaseRoutes />} />
+      <Route path="/*" element={<BaseRoutes/>} />
 
       {/* Auth routes */}
-      <Route path="/auth/*" element={<AuthRoute />} />
+      <Route path="/auth/*" element={<AuthRoute/>} />
 
       {/* Private routes */}
       <Route path="/app/*" element={<Routing />} />

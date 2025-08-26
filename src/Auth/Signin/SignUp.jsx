@@ -1,11 +1,10 @@
 import  {useState } from "react"
-import { setUsers } from "../../website/slice/userSlice"
+import {  setUsers } from "../../website/slice/userSlice"
 import {   useNavigate } from "react-router-dom"
 import Inputs from "../Inputs/Inputs"
-// import {authAPI} from '../../Service/api'
+import {authAPI} from '../../Service/api'
 
 import { useDispatch } from "react-redux"
-import axios from "axios"
 export default function SignUp(){
     const[formData,setFormData]=useState({
       username:"",
@@ -49,10 +48,10 @@ export default function SignUp(){
            }  
            try{
              dispatch(setUsers(formData))
-             const response =await axios.post("https://centralized-auth-system.onrender.com/auth/signup",formData)
+             const response =await authAPI.register(formData)
              console.log(response.data);
-           navigate('/auth/otpgen',{replace:true}) 
-           alert('go to otp page')
+             alert('go to otp page')
+             navigate('/auth/otpgen') 
           
            }
            catch(err){

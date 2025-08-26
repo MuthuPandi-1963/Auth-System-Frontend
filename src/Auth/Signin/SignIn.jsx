@@ -99,7 +99,7 @@ export default function Authform(){
     <button type="submit" className="graybtn w-1/2  p-1 px-4 text-md " >submit
         </button>  }  
       <button className="text-gray-900 font-serif text-sm underline py-2 hover:text-blue-700 text-start cursor-pointer">   <Link to='/auth/resetpassword'>forget password</Link></button>
-             {isLogin ? <p> Don't have an account?
+             {!isLogin ? <p> Don't have an account?
              <button className="text-gray-900 font-serif text-sm underline p-2 hover:text-indigo-900 cursor-pointer"><Link to="/auth/signup" > Sign Up here    </Link></button>
          
             </p>:<p>

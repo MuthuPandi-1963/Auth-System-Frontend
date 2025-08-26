@@ -1,7 +1,7 @@
 import {createSlice,createAsyncThunk} from '@reduxjs/toolkit';
 import axios from 'axios'
 export const loginUser = createAsyncThunk(
-  'auth/login',
+  'auth',
   async ({ name, password ,email}, thunkAPI) => {
     try {
       // Replace with real API call

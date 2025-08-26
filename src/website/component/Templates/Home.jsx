@@ -6,6 +6,8 @@ import uesState from 'react'
 import useEffect from 'react'
 
 const Home = () => {
+
+  
     return (
     <>
       <Nav/>

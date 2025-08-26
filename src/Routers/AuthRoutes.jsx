@@ -1,6 +1,7 @@
 import { Outlet,Route,Routes } from "react-router-dom";
 import SignUp from "../Auth/Signin/SignUp";
 import SignIn from "../Auth/Signin/SignIn"
+import Error from "./Error";
 import  Home  from "../website/component/Templates/Home";
 import Otpgen from '../Auth/PAsswordManagements/Otpgen'
 import ResetPassword from '../Auth/PAsswordManagements/Resetpassword'
@@ -12,7 +13,7 @@ export default function AuthRoute(){
                 <Route path="signup" element={<SignUp/>}/>
                 <Route path="otpgen" element={<Otpgen/>}/>
                 <Route path='resetpassword' element={<ResetPassword/>}/>
-
+                
 
             </Route>
         </Routes>
