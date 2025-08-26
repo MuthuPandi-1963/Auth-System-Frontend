@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Inputs from "../Inputs/Inputs";
 import { loginUser } from "../../website/slice/userSlice";
 import {useDispatch,useSelector} from 'react-redux'
+
 export default function Authform(){
     const [isLogin,setIsLogin] =useState(false)
     const [errors,setErrors]=useState({})
@@ -69,11 +70,11 @@ export default function Authform(){
 
       
     return(
-          <div className="background">
-        <div className="relative z-10 max-w-md mx-auto  p-8  bg-gray-300  rounded-2xl shadow-lg" id="auth">
+          <div className=''>
+        <div className="relative   w-1/2  p-8  bg-gray-300  rounded-2xl shadow-lg" id="auth">
 
       <form className=" flex flex-col gap-3 " onSubmit={OnsubmitHandle} >
-        <h2 className="headers py-2 font-bold uppercase  text-3xl">Login</h2>
+        <h2 className="headers py-2 font-bold uppercase  text-3xl">sign in</h2>
           <Inputs
             type="text"
             name="username"

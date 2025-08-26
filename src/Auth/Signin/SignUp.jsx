@@ -62,8 +62,9 @@ export default function SignUp(){
        
        
     return(
-        <div className="background ">
-            <div className="blurbg">
+        <div className="place-content-center m-2">
+          
+            <div className="justify-center items-center ">
         <h1 className="font-semibold text-[20px] my-2 uppercase text-white">SignUp page</h1>
         
             <form className="flex flex-col gap-3 " onSubmit={OnsubmitHandle}>
@@ -100,7 +101,7 @@ export default function SignUp(){
                   error={error?.password}
                   className="inputs  border-black w-fit"      
                   />
-                 <button type="submit" className="bg-gray-200 rounded py-1 my-4  hover:bg-gray-400">submit</button>
+                 <button type="submit" className="bg-gray-200 rounded py-1 my-4 w-1/2 hover:bg-gray-400">submit</button>
                  <p className="items-center" onClick={()=>{navigate('/auth/login')}}>Already have a account ?<span className="hover:underline pl-2 text-shadow-blue-950">Log In</span></p>
                   <p className="error">
 
