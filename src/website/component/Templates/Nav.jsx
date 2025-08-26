@@ -1,6 +1,6 @@
 import {  useNavigate } from 'react-router'
 export default function Nav() {
-  const links = ["Home","About","Profile","Social","Login"] 
+  const links = ["Home",'about',"Login"] 
   const navigate =useNavigate() 
   const HandleNavigate=(path)=>{
        const base=['home','about']
@@ -17,7 +17,6 @@ export default function Nav() {
     else if(pathdb==='social'){
       navigate('/app/social')
     }
-    
   }
   return (
    
@@ -25,7 +24,7 @@ export default function Nav() {
         <h2 className='mask-t-from-neutral-600 text-lg'>auth control project</h2>
         <ol className='items-center flex gap-2 font-semibold'>
             {
-              links.map((items,id)=>( <li key={id} className='mask-t-from-10% hover:text-white hover:border-b-2 ' onClick={()=>HandleNavigate(items)}>
+              links.map((items,id)=>( <li key={id} className='bg-green-900 px-2 rounded-lg ' onClick={()=>HandleNavigate(items)}>
                 {items.toLowerCase()}
                 </li>
               ))

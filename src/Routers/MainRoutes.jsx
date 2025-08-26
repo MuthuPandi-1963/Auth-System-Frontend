@@ -6,7 +6,7 @@ import AuthRoute from './AuthRoutes';
 
 export default function App() {
   return (
-    <Routes>
+    <Routes >
       {/* Public routes */}
       <Route path="/*" element={<BaseRoutes/>} />
 

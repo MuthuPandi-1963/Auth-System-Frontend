@@ -8,7 +8,7 @@ import Profile from '../website/component/usertemp/Profile'
     }
 export default function Routing(){
     return(
-        <Routes>  
+        <Routes >  
        <Route path='/profile/:id' element={<Profile/>}/>
        <Route path='social' element={<Social/>}/>
     
