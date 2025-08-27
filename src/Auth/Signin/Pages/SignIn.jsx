@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Link } from 'react-router-dom';
 import { useEffect } from "react";
-import Googlelogin from '../Sociallog/Googlelogin'
+import Googlelogin from '../../Sociallog/Googlelogin'
 import { useNavigate } from "react-router-dom";
-import Inputs from "../Inputs/Inputs";
-import { loginUser } from "../../website/slice/userSlice";
+import Inputs from "../../Inputs/Inputs";
+import { loginUser } from "../../../website/slice/userSlice";
 import {useDispatch,useSelector} from 'react-redux'
 
 export default function Authform(){

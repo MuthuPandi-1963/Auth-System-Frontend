@@ -1,8 +1,8 @@
 import  {useState } from "react"
-import {  setUsers } from "../../website/slice/userSlice"
+import {  setUsers } from "../../../website/slice/userSlice"
 import {   useNavigate } from "react-router-dom"
-import Inputs from "../Inputs/Inputs"
-import {authAPI} from '../../Service/api'
+import Inputs from "../../Inputs/Inputs"
+import {authAPI} from '../../../Service/api'
 
 import { useDispatch } from "react-redux"
 export default function SignUp(){

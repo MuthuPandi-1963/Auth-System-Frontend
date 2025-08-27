@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom'
-import SignIn from './SignIn'
-import SignUp from './SignUp'
-import Googlelogin from '../Sociallog/Googlelogin'
+import SignIn from '../Pages/SignIn'
+import SignUp from '../Pages/SignUp'
+import Googlelogin from '../../Sociallog/Googlelogin'
 export default function UI(){
     return(
         <div className="bg-white h-fit items-center w-1/2">

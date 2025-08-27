@@ -1,5 +1,5 @@
 import { Outlet,Route,Routes } from "react-router-dom";
-import SignUp from "../Auth/Signin/SignUp";
+import SignUp from "../Auth/Signin/Pages/SignUp";
 import Signin from "../Auth/Signin/Layouts/Signin"
 import Error from "./Error";
 import Signup from "../Auth/Signin/Layouts/Signup";
