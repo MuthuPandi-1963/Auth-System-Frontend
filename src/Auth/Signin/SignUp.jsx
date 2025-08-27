@@ -64,8 +64,8 @@ export default function SignUp(){
     return(
         <div className="place-content-center m-2">
           
-            <div className="justify-center items-center ">
-        <h1 className="font-semibold text-[20px] my-2 uppercase text-white">SignUp page</h1>
+            <div className="justify-center grid items-center ">
+        <h1 className="font-semibold text-[20px] my-2 uppercase ">SignUp page</h1>
         
             <form className="flex flex-col gap-3 " onSubmit={OnsubmitHandle}>
                <Inputs

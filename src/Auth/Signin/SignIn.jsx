@@ -71,7 +71,7 @@ export default function Authform(){
       
     return(
           <div className=''>
-        <div className="relative   w-1/2  p-8  bg-gray-300  rounded-2xl shadow-lg" id="auth">
+        <div className="relative     p-8  bg-gray-300  rounded-2xl shadow-lg" id="auth">
 
       <form className=" flex flex-col gap-3 " onSubmit={OnsubmitHandle} >
         <h2 className="headers py-2 font-bold uppercase  text-3xl">sign in</h2>

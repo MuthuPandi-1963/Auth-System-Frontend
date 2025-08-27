@@ -11,7 +11,7 @@ export default function Routing(){
         <Routes >  
        <Route path='/profile/:id' element={<Profile/>}/>
        <Route path='social' element={<Social/>}/>
-    
+        <Route path="*" element={<Error/>}/>    
         </Routes>
     )
   

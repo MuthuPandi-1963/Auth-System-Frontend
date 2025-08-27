@@ -11,9 +11,7 @@ export default function baseRoutes() {
         <Route index element={<Templates/>}/>
       <Route path="home" element={<Home />}/>
         <Route path="about" element={<About />} />
-        <Route path="hero" element={<Hero />} />  
-  
-
+       <Route path="*" element={<Error/>}/>    
     </Routes>
   );
     

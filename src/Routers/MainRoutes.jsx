@@ -15,7 +15,6 @@ export default function App() {
 
       {/* Private routes */}
       <Route path="/app/*" element={<Routing />} />
-      <Route path="*" element={<Error />} />
     </Routes>
   );
 }
